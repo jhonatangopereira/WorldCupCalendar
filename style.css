@@ -4,36 +4,63 @@
   box-sizing: border-box;
 }
 
+:root {
+  --card-color-primary: #F7DD43;
+  --card-title-border-color: #746615;
+  --card-bg-color: #1D1C19;
+  --bg: url(./assets/bg-purple.svg);
+}
+
+body.blue {
+  --card-color-primary: #338AF3;
+  --card-title-border-color: #338AF3;
+  --card-bg-color: #202024;
+  --bg: url(./assets/bg-blue.svg);
+}
+
+body.green {
+  --card-color-primary: #047C3F;
+  --card-title-border-color: #047C3F;
+  --card-bg-color: #1A1F1B;
+  --bg: url(./assets/bg-green.svg);
+}
+
 body {
   background-color: #121214;
-  background-image: url(./assets/background.svg);
-  background-position-x: center;
-  background-position-y: 55.6%;
+  background-image: var(--bg);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 body * {
-  font-family: 'Roboto', serif;
+  font-family: "Roboto", serif;
 }
 
 #app {
   width: fit-content;
-  margin: 52px auto;
+  margin: auto;
+  padding-top: 52px;
+  padding-bottom: 52px;
 }
 
 header {
   margin-bottom: 63px;
+  text-align: center;
 }
 
-ul {
-  list-style: none;
+#cards {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .card {
   padding: 32px 23px;
   text-align: center;
 
-  background: #1D1C19;
-  border-bottom: 2px solid #f7dd43;
+  background: var(--card-bg-color);
+  border-bottom: 2px solid var(--card-color-primary);
   border-radius: 6px;
 }
 
@@ -44,7 +71,7 @@ ul {
   align-items: center;
 
   padding: 8px 16px;
-  border: 1px solid #746615;
+  border: 1px solid var(--card-title-border-color);
   border-radius: 6px;
 
   width: fit-content;
@@ -55,7 +82,7 @@ ul {
 }
 
 .card h2 span {
-  color: #E1E1E6;
+  color: #e1e1e6;
   font-size: 14px;
   text-transform: uppercase;
 }
@@ -64,7 +91,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 24px;
-
+  list-style: none;
   width: 270px;
 }
 
@@ -84,5 +111,59 @@ ul {
   font-size: 36px;
   line-height: 125%;
 
-  color: #E1E1E6;
+  color: #e1e1e6;
+}
+
+.card h2:hover,
+.card ul li strong:hover,
+.card ul li img:hover {
+  transform: scale(1.1);
+}
+
+.card h2,
+.card ul li strong,
+.card ul li img {
+  transition: transform 0.3s;
+}
+
+.card {
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 700px) {
+  #cards {
+    max-width: 700px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.sidebar {
+  width: 50px;
+  height: 100%;
+  background-color: #f7dd43;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.left-menu-icon {
+  color: #2c1c28;
+  font-size: 25px;
 }
